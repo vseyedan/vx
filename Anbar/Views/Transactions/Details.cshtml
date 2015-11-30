@@ -1,0 +1,85 @@
+﻿@model Anbar.Models.Transaction
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>جزئیات</h2>
+
+<div>
+    <h2>تراکنش</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Entry_Supplier.SupplierName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entry_Supplier.SupplierName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exit_Department.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Exit_Department.DepartmentName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("برگشت به لیست", "Index")
+</p>
+
+
+<p>
+
+    @Html.ActionLink("ایجاد", "Create", "TransactionDetails", new { id = Model.ID, PlusSign = (Model.TransactionType.ToString() == "ورود"),
+        ChkboxEnbl = (Model.TransactionType.ToString() == "انتقال")}, null)
+</p>
+
+<table class="table">
+    <tr>
+        <th>نام محصول</th>
+        <th>انبار</th>
+        <th>افزایش(کاهش)</th>
+        <th>مقدار</th>
+    </tr>
+
+    @foreach (var item in Model.TransactionDetails)
+    {
+        <tr>
+            <td>@item.Product.ProductName</td>
+            <td>@item.Inventory.InventoryName</td>
+            <td>@item.PlusMinusSign</td>
+            <td>@item.Quantity</td>
+        </tr>
+    }
+
+</table>

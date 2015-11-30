@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Anbar.Models.Transaction>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>فهرست</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.ActionLink("ایجاد سند ورود به انبار", "Create", new { tTypeID = 0 }, new { @class="btn btn-primary"})
+        </td>
+        <td>
+            @Html.ActionLink("ایجاد سند مصرف", "Create", new { tTypeID = 1 }, new { @class = "btn btn-info" })
+        </td>
+        <td>
+            @Html.ActionLink("ایجاد سند خروج", "Create", new { tTypeID = 2 }, new { @class = "btn btn-danger" })
+        </td>
+        <td>
+            @Html.ActionLink("ایجاد سند انتقال", "Create", new { tTypeID = 3 }, new { @class = "btn btn-info" })
+        </td>
+       
+    </tr>
+</table>
+
+@foreach (var Grp in Model.GroupBy(x => x.TransactionType))
+{
+    <div class="panel panel-info">
+        <div class="panel-heading"><strong> @Grp.Key</strong></div>
+        <table class="table">
+            <tr>
+    
+               
+                <th>
+                    @Html.DisplayNameFor(model => model.TransactionNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TransactionDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TransactionType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Entry_Supplier.SupplierName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Exit_Department.DepartmentName)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Where(y => y.TransactionType == Grp.Key).OrderByDescending(y=>y.TransactionDate))
+            {
+                <tr>
+                   
+                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TransactionNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TransactionDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TransactionType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Entry_Supplier.SupplierName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Exit_Department.DepartmentName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("ویرایش", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("جزئیات", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+}

@@ -1,0 +1,87 @@
+﻿@model Anbar.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>جزئیات</h2>
+
+<div>
+    <h4>ProductCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("ویرایش", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("برگشت به لیست", "Index")
+</p>
+
+
+@foreach (var ix in Model.Products.GroupBy(m => m.IxCode.IxCodeName).OrderBy(m => m.Key))
+{
+    <p></p>
+    <div class="panel panel-info">
+        <div class="panel-heading">@ix.Key.ToString()</div>
+        @*<h2 style="color:midnightblue">@ix.Key.ToString()</h2>*@
+        <div>
+
+            <table class="table">
+                <tr>
+                    <th>کد محصول</th>
+                    <th>نام محصول</th>
+                    @*<th>کد شاخص و رنگ</th>*@
+                    <th>شرح محصول</th>
+                    <th>سطح سفارش</th>
+                </tr>
+                @foreach (var iy in Model.Products.Where(n => n.IxCode.IxCodeName == ix.Key))
+                {
+                    <tr>
+
+                        <td>@iy.ProductCode</td>
+                        <td>@iy.ProductName</td>
+                        @*<td>@iy.IxCode.IxCodeName</td>*@
+                        <td>@iy.ProductDescription</td>
+                        <td>@iy.StockLevel</td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+
+}
+
+
+@*<div>
+    <table class="table">
+        <tr>
+            <th>کد محصول</th>
+            <th>نام محصول</th>
+            <th>کد شاخص و رنگ</th>
+            <th>شرح محصول</th>
+            <th>سطح سفارش</th>
+        </tr>
+        @foreach (var item in Model.Products.OrderBy(m => m.IxCode.IxCodeName))
+            {
+            <tr>
+                <td>@item.ProductCode</td>
+                <td>@item.ProductName</td>
+                <td>@item.IxCode.IxCodeName</td>
+                <td>@item.ProductDescription</td>
+                <td>@item.StockLevel</td>
+
+            </tr>
+
+        }
+
+    </table>
+</div>*@

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Anbar.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>فهرست</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IxCode.IxCodeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCategory.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit.UnitName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StockLevel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IxCode.IxCodeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCategory.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unit.UnitName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StockLevel)
+        </td>
+        <td>
+            @Html.ActionLink("ویرایش", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("جزئیات", "Details", new { id=item.ID }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
