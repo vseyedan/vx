@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>جزئیات</h2>
+<h2>Details</h2>
 
 <div>
     <h4>Supplier</h4>
@@ -19,6 +19,22 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
 
@@ -29,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("ویرایش", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("برگشت به لیست", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

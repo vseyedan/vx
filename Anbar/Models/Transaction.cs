@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -31,12 +32,23 @@ namespace Anbar.Models
         [Required]
         public string TransactionNo { get; set; }
 
-
-        [DisplayName("تاریخ")]
-        [Range(13000101,14991230)]
-        [DisplayFormat(ApplyFormatInEditMode =false,DataFormatString ="{0:####/##/##}")]
+        [UIHint("ShamsiDate")]
+        [DisplayName("تاریخ سند")]
         [Required]
-        public int TransactionDate { get; set; }
+        public DateTime TransactionDate { get; set; }
+
+        //[DisplayName("تاریخ")]
+        //[Range(13000101,14991230)]
+        //[DisplayFormat(ApplyFormatInEditMode =false,DataFormatString ="{0:####/##/##}")]
+        //[Required]
+        //public int TransactionDate { get; set; }
+
+        [DisplayName("توضیحات")]
+        [DataType(DataType.MultilineText)]
+        [UIHint("TextArea")]
+        [StringLength(200)]
+        public string Description { get; set; }
+
 
         [DisplayName("فروشنده")]   
         public int? Entry_SupplierID { get; set; }

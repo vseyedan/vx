@@ -48,7 +48,7 @@ namespace Anbar.InvControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,SupplierName,Description")] Supplier supplier)
+        public async Task<ActionResult> Create([Bind(Include = "ID,SupplierName,Phone,Address,Description")] Supplier supplier)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace Anbar.InvControllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,SupplierName,Description")] Supplier supplier)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,SupplierName,Phone,Address,Description")] Supplier supplier)
         {
             if (ModelState.IsValid)
             {
